@@ -21,18 +21,18 @@ var transporter = nodemailer.createTransport({
   }
 });
 
-var mailOptions = {
-  from: process.env.ID,
-  to: process.env.EID,
-  subject: 'Skyminer Nodes check',
-  text: 'OFFLINE NODE: ' + presentOfflineNodeINdex
-};
 
 setInterval(api, 5000);
 setInterval(sendMail,1000*30)
 // setImmediate(sendMail)
 
 function sendMail() {
+  var mailOptions = {
+    from: process.env.ID,
+    to: process.env.EID,
+    subject: 'Skyminer Nodes check',
+    text: 'OFFLINE NODE: ' + fruits.toString();
+  };
   if(presentOfflineNodeINdex.length!=0 && sendingmail == true){
     transporter.sendMail(mailOptions, function(error, info){
   if (error) {
@@ -114,16 +114,16 @@ presentOnlineNodeIndes.push(i+1);
 }
 // console.log(presentOfflineNodeINdex)
 // console.log("OK");
-console.log(sendingmail);
+// console.log(sendingmail);
 
 
 
 }
 
-app.get('/online', function (req, res) {
+app.get('/offline', function (req, res) {
   res.send(presentOfflineNodeINdex)
 })
-app.get('/offline', function (req, res) {
+app.get('/online', function (req, res) {
   res.send(presentOnlineNodeIndes)
 })
 app.get('/start', function (req, res) {
