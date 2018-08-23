@@ -22,8 +22,8 @@ var transporter = nodemailer.createTransport({
 });
 
 
-setInterval(api, 5000);
-setInterval(sendMail,1000*30)
+setInterval(api, 1000*60*process.env.TIMECHECK);
+setInterval(sendMail,1000*60*process.env.SENDEMAIL)
 // setImmediate(sendMail)
 
 function sendMail() {
@@ -31,7 +31,7 @@ function sendMail() {
     from: process.env.ID,
     to: process.env.EID,
     subject: 'Skyminer Nodes check',
-    text: 'OFFLINE NODE: ' + fruits.toString();
+    text: 'OFFLINE NODE: ' + presentOfflineNodeINdex.toString()
   };
   if(presentOfflineNodeINdex.length!=0 && sendingmail == true){
     transporter.sendMail(mailOptions, function(error, info){
