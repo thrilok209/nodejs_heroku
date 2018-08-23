@@ -25,7 +25,7 @@ var mailOptions = {
   from: process.env.ID,
   to: process.env.EID,
   subject: 'Skyminer Nodes check',
-  text: `OFFLINE NODE: ${presentOfflineNodeINdex}`
+  text: 'OFFLINE NODE: ' + presentOfflineNodeINdex
 };
 
 setInterval(api, 5000);
