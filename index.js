@@ -10,7 +10,6 @@ var  presentOnlineNodeIndes=[]
 var presentOfflineNode=[]
 var presentOfflineNodeINdex=[]
 var  showofflinenodes=[]
-const sendmail = require('sendmail')();
 var nodemailer = require('nodemailer');
 var sendingmail = true;
 
