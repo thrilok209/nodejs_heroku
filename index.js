@@ -77,7 +77,7 @@ console.log(sendingmailkvar);
 
 function api() {
   request('http://discovery.skycoin.net:8001/conn/getAll', { json: true }, (err, res, body) => {
-    if (err) { return console.log(err); }
+    if (err) { return console.log("error in fetching data main data"); }
     console.log(body.length);
     emitter.emit('data', body );
 
