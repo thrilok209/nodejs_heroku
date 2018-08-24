@@ -127,7 +127,7 @@ presentOnlineNodeIndes.push(i+1);
 }
 
 app.get('/offline', function (req, res) {
-  res.send(presentOfflineNodeINdex})
+  res.send(presentOfflineNodeINdex)
 })
 app.get('/online', function (req, res) {
   res.send(presentOnlineNodeIndes)
