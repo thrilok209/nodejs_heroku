@@ -12,6 +12,7 @@ var presentOfflineNodeINdex=[]
 var  showofflinenodes=[]
 var nodemailer = require('nodemailer');
 var sendingmail = true;
+var emailerror = 'no error'
 
 var transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -22,9 +23,9 @@ var transporter = nodemailer.createTransport({
 });
 
 
+setImmediate(api)
 setInterval(api, 1000*60*process.env.TIMECHECK);
 setInterval(sendMail,1000*60*process.env.SENDEMAIL)
-// setImmediate(sendMail)
 
 function sendMail() {
   var mailOptions = {
@@ -37,6 +38,7 @@ function sendMail() {
     transporter.sendMail(mailOptions, function(error, info){
   if (error) {
     console.log(error);
+    emailerror = error;
   } else {
     console.log('Email sent: ' + info.response);
   }
@@ -121,7 +123,7 @@ presentOnlineNodeIndes.push(i+1);
 }
 
 app.get('/offline', function (req, res) {
-  res.send(presentOfflineNodeINdex)
+  res.send(`${presentOfflineNodeINdex}`)
 })
 app.get('/online', function (req, res) {
   res.send(presentOnlineNodeIndes)
