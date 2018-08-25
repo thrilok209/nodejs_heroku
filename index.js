@@ -14,7 +14,8 @@ var nodemailer = require('nodemailer');
 var sendingmail = true;
 var emailerror = 'no error'
 var timeCheckvar = 1000*60*process.env.TIMECHECK
-var sendingmailkvar = 1000*60*process.env.TIMECHECK
+var sendingmailkvar = 1000*60*process.env.SENDEMAIL
+var path    = require("path");
 
 var transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -66,8 +67,8 @@ emitter.on('data', (arg)=> {
   // console.log(allNode);
 
 checkOnline();
-console.log(timeCheckvar);
-console.log(sendingmailkvar);
+console.log("Regular check time: "timeCheckvar);
+console.log("Sending Email time: "sendingmailkvar);
 
 
 
@@ -78,8 +79,9 @@ console.log(sendingmailkvar);
 function api() {
   request('http://discovery.skycoin.net:8001/conn/getAll', { json: true }, (err, res, body) => {
     if (err) { return console.log("error in fetching data main data"); }
-    console.log(body.length);
+    console.log("Total number of nodes: "body.length);
     emitter.emit('data', body );
+
 
   });
 }
@@ -118,7 +120,7 @@ presentOnlineNodeIndes.push(i+1);
 }
 
 }
-console.log(presentOfflineNodeINdex)
+// console.log(presentOfflineNodeINdex)
 // console.log("OK");
 // console.log(sendingmail);
 
@@ -128,6 +130,9 @@ console.log(presentOfflineNodeINdex)
 
 app.get('/offline', function (req, res) {
   res.send(presentOfflineNodeINdex)
+})
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname+'/index.html'));
 })
 app.get('/online', function (req, res) {
   res.send(presentOnlineNodeIndes)
