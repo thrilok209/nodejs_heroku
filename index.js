@@ -66,9 +66,9 @@ emitter.on('data', (arg)=> {
   allNode = arg;
   // console.log(allNode);
 
-checkOnline();
-console.log("Regular check time: "timeCheckvar);
-console.log("Sending Email time: "sendingmailkvar);
+checkOnline()
+console.log("Regular check time: " +timeCheckvar);
+console.log("Sending Email time: " + sendingmailkvar);
 
 
 
@@ -79,7 +79,7 @@ console.log("Sending Email time: "sendingmailkvar);
 function api() {
   request('http://discovery.skycoin.net:8001/conn/getAll', { json: true }, (err, res, body) => {
     if (err) { return console.log("error in fetching data main data"); }
-    console.log("Total number of nodes: "body.length);
+    console.log("Total number of nodes: " + body.length);
     emitter.emit('data', body );
 
 
